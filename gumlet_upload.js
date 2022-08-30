@@ -18,6 +18,7 @@ const exec = require('child_process').exec;
   const collectionIdx = argv.indexOf('--collection');
   const keyIdx = argv.indexOf('--key');
 
+  // all arguments are required
   if (pathIdx === -1)
     return console.log('\x1b[31m%s\x1b[0m', 'Your must pass a path argument. Use --path <value>');
   if (formatIdx === -1)
@@ -32,7 +33,7 @@ const exec = require('child_process').exec;
   const collectionVal = argv[collectionIdx + 1];
   const keyVal = argv[keyIdx + 1];
 
-  /* type argument value not found */
+  // all arguments must have a value
   if (!pathVal)
     return console.log('\x1b[31m%s\x1b[0m', 'Path argument has no value. Use --path <value>');
   if (!formatVal)
@@ -45,10 +46,10 @@ const exec = require('child_process').exec;
   const targetPath = join(__dirname, '/', pathVal);
   const supportedFormat = ['.mp4', '.mov', '.flv', '.mkv'];
   
+  // Passed format must be supported
   if (supportedFormat.indexOf(formatVal) === -1)
     return console.log('\x1b[31m%s\x1b[0m', `Format not supported. Only supports ${supportedFormat.join(', ').replace(/, ([^,]*)$/, ' and $1')}`);
 
-  // Get an array of the files inside the folder
   const files = readdirSync(targetPath);
 
   // Loop through each file that was retrieved
