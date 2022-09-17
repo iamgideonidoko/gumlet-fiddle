@@ -62,6 +62,7 @@ const exec = require('child_process').exec;
             format: 'hls',
             resolution: ['240p', '360p', '720p', '1080p'],
             keep_original: false,
+            title: file,
           };
           console.log('\x1b[34m%s\x1b[0m', `Attempting to create asset for ${file}...`);
           const createAssetRes = await axios.post('https://api.gumlet.com/v1/video/assets/upload', createAssetBody, {
